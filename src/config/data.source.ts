@@ -9,7 +9,7 @@ export const DataSourceConfig: DataSourceOptions = {
     password: 'joniSecret',
     database: 'jonidb',
     entities: [__dirname + '/../**/**/*.entity{.ts,.js}'],
-    migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
+    migrations: [__dirname + '/../migrations/*{.ts,.js}'],
     synchronize: false,
     migrationsRun: true,
     logging: false,
