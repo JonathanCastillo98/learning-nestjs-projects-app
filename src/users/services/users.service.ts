@@ -41,7 +41,7 @@ export class UsersService {
 
     public async findUser(id: string): Promise<UsersEntity> {
         try {
-            const user: UsersEntity = await this.userRepository.createQueryBuilder('user').where({ id }).getOne();
+            const user: UsersEntity = await this.userRepository.createQueryBuilder('user').where({ id }).leftJoinAndSelect('user.projectsIncludes', 'projectsIncludes').leftJoinAndSelect('projectsIncludes.project', 'project').getOne();
             if (!user) throw new ErrorManager({ type: 'BAD_REQUEST', message: 'No se encontro el usuario' });
             return user;
         } catch (error) {
