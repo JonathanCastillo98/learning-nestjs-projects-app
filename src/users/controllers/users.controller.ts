@@ -15,17 +15,21 @@ import { Roles } from 'src/auth/decorators/roles.decorator';
 import { AdminAccess } from 'src/auth/decorators/admin.decorator';
 
 @Controller('users')
-@UseGuards(AuthGuard, RolesGuard)
+// @UseGuards(AuthGuard, RolesGuard)
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
     @Post('register')
-    public async registerUser(@Body() body: UserDTO) {
+    public async registerUser(
+        @Body() body: UserDTO
+    ) {
         return await this.usersService.createUser(body);
     }
 
     @Post('relationate-entities')
-    public async relationateEntities(@Body() body: UsersProjectsDTO) {
+    public async relationateEntities(
+        @Body() body: UsersProjectsDTO
+    ) {
         return await this.usersService.relationateEntities(body);
     }
 
@@ -35,16 +39,23 @@ export class UsersController {
     }
 
     @Get(':id')
-    public async findUserById(@Param('id') id: string) {
+    public async findUserById(
+        @Param('id') id: string
+    ) {
         return await this.usersService.findUser(id);
     }
 
     @Put('edit/:id')
-    public async updateUser(@Body() body: UserUpdateDTO, @Param('id') id: string) {
+    public async updateUser(
+        @Body() body: UserUpdateDTO, 
+        @Param('id') id: string
+    ) {
         return await this.usersService.updateUser(body, id);
     }
     @Delete('delete/:id')
-    public async deleteUser(@Param('id') id: string) {
+    public async deleteUser(
+        @Param('id') id: string
+    ) {
         return await this.usersService.deleteUser(id);
     }
 }

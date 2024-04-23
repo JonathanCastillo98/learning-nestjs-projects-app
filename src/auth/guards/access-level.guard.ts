@@ -22,7 +22,7 @@ export class AccessLevelGuard implements CanActivate {
     const req = context.switchToHttp().getRequest<Request>();
     const { roleUser, idUser } = req;
 
-    if (roleUser === ROLES.ADMIN) return true;
+    if (roleUser === ROLES.ADMIN || roleUser === ROLES.CREATOR) return true;
 
     const user = await this.userService.findUser(idUser);
     const userExistsInProject = user.projectsIncludes.find((project) => project.project.id === req.params.id);
