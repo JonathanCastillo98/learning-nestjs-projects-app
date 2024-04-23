@@ -1,8 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ProjectsService } from '../services/projects.service';
 import { ProjectDTO, ProjectUpdateDTO } from '../dto/project.dto';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { AccessLevelGuard } from 'src/auth/guards/access-level.guard';
+import { AccessLevel } from 'src/auth/decorators/access-level.decorator';
+import { ACCESS_LEVEL } from 'src/constants/roles';
 
 @Controller('projects')
+@UseGuards(AuthGuard, RolesGuard, AccessLevelGuard)
 export class ProjectsController {
     constructor(private readonly projectsService: ProjectsService) { }
 

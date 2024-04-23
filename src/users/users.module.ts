@@ -4,7 +4,9 @@ import { UsersController } from './controllers/users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersEntity } from './entities/users.entity';
 import { UsersProjectsEntity } from './entities/usersProjects.entity';
+import { Global } from '@nestjs/common';
 
+@Global()
 @Module({
   imports: [TypeOrmModule.forFeature([UsersEntity, UsersProjectsEntity])],
   providers: [UsersService],
