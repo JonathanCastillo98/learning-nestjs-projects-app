@@ -1,7 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
-import { Observable } from 'rxjs';
 import { PUBLIC_KEY } from 'src/constants/key-decorators';
 import { UsersService } from 'src/users/services/users.service';
 import { useToken } from 'src/utils/use.token';
